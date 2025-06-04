@@ -16,8 +16,18 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: '**/*.feature',
-    supportFile: false,
-    setupNodeEvents
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    video: true,
+    screenshotOnRunFailure: true,
+    screenshotsFolder: 'cypress/screenshots',
+    videosFolder: 'cypress/videos',
+    specPattern: 'cypress/e2e/features/**/*.feature',
+    supportFile: 'cypress/support/e2e.js',
+    stepDefinitions: [
+      'cypress/support/step_definitions/*.js',
+      'cypress/support/step_definitions/**/*.js'
+    ]
   },
 }); 

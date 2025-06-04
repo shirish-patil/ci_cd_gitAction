@@ -24,8 +24,13 @@ jobs:
       - name: Install Cypress
         run: npm install cypress@12.17.4
         
+      - name: Create Cypress directories
+        run: |
+          mkdir -p cypress/videos
+          mkdir -p cypress/screenshots
+        
       - name: Run Cypress tests
-        run: npx cypress run --spec "cypress/e2e/features/perm-status.feature"
+        run: npx cypress run --spec "cypress/e2e/features/perm-status.feature" --record false --video true --screenshots true
         
       - name: Upload test results
         if: always()
