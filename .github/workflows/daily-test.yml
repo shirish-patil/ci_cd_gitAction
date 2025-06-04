@@ -19,11 +19,10 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm ci
-        
-      - name: Install Cypress
-        run: npm install cypress@12.17.4
-        
+        run: |
+          npm install
+          npm install @badeball/cypress-cucumber-preprocessor @bahmutov/cypress-esbuild-preprocessor
+          
       - name: Create Cypress directories
         run: |
           mkdir -p cypress/videos

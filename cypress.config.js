@@ -16,9 +16,7 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    setupNodeEvents,
     video: true,
     screenshotOnRunFailure: true,
     screenshotsFolder: 'cypress/screenshots',
