@@ -1,0 +1,20 @@
+{
+  "name": "permstatuschecker",
+  "version": "1.0.0",
+  "description": "Cypress automation framework for checking perm status",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "cypress run",
+    "test:headed": "cypress run --headed"
+  },
+  "keywords": ["cypress", "cucumber", "automation", "testing"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^15.1.4",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "12.17.4"
+  }
+}
