@@ -16,7 +16,7 @@ This project automates the process of checking PERM processing times and case st
 - Case status verification with case numbers
 - BDD (Behavior-Driven Development) with Cucumber
 - Page Object Model implementation
-- Daily automated test runs at 9 AM UTC
+- Daily automated test runs at 9 AM Central Time
 - Automatic test runs on every push to main branch
 - Test results (videos and screenshots) saved as artifacts
 
@@ -76,7 +76,7 @@ npx cypress open
 The project uses GitHub Actions for continuous integration and deployment:
 
 1. **Daily Automated Runs**
-   - Tests run automatically at 9 AM UTC every day
+   - Tests run automatically at 9 AM Central Time (UTC-6) every day
    - Results are saved as artifacts
 
 2. **Push-Triggered Runs**

@@ -2,14 +2,14 @@ name: Daily PERM Status Check
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Runs at 9:00 AM UTC every day
+    - cron: '0 15 * * *'  # Runs at 9:00 AM Central Time (UTC-6)
   workflow_dispatch:  # Allows manual trigger
   push:
     branches:
       - main  # Runs on every push to main branch
 
 jobs:
-  current_perm_status:
+  test:
     runs-on: ubuntu-latest
     
     steps:
