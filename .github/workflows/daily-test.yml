@@ -34,6 +34,21 @@ jobs:
           mkdir -p cypress/screenshots
           mkdir -p cypress/results
         
+      - name: Validate Environment Variables
+        run: |
+          if [ -z "${{ secrets.CYPRESS_BASE_URL }}" ]; then
+            echo "::error::CYPRESS_BASE_URL is not set in repository secrets"
+            exit 1
+          fi
+          if [ -z "${{ secrets.CYPRESS_USERNAME }}" ]; then
+            echo "::error::CYPRESS_USERNAME is not set in repository secrets"
+            exit 1
+          fi
+          if [ -z "${{ secrets.CYPRESS_PASSWORD }}" ]; then
+            echo "::error::CYPRESS_PASSWORD is not set in repository secrets"
+            exit 1
+          fi
+        
       - name: Run Cypress tests
         run: |
           npx cypress run --spec "cypress/e2e/features/perm-status.feature" || true
