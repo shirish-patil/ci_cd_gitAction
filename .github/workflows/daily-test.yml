@@ -1,10 +1,11 @@
-name: Daily Perm Status Check
+name: Daily PERM Status Check
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 9 AM CST
-    - cron: '0 19 * * *'  # 1 PM CST
-    - cron: '0 0 * * *'   # 6 PM CST
+    - cron: '0 12 * * *'  # Runs at 6:00 AM Central Time (UTC-6)
+    - cron: '0 15 * * *'  # Runs at 9:00 AM Central Time (UTC-6)
+    - cron: '0 18 * * *'  # Runs at 12:00 PM Central Time (UTC-6)
+    - cron: '0 0 * * *'   # Runs at 6:00 PM Central Time (UTC-6)
   workflow_dispatch:  # Allows manual trigger
   push:
     branches:
@@ -20,50 +21,27 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '16'
           cache: 'npm'
           
       - name: Install dependencies
         run: |
-          npm ci
-          npm install cypress @badeball/cypress-cucumber-preprocessor @bahmutov/cypress-esbuild-preprocessor
-        
+          npm install
+          npm install @badeball/cypress-cucumber-preprocessor @bahmutov/cypress-esbuild-preprocessor
+          
       - name: Create Cypress directories
         run: |
           mkdir -p cypress/videos
           mkdir -p cypress/screenshots
-          mkdir -p cypress/results
-        
-      - name: Validate Environment Variables
-        run: |
-          if [ -z "${{ secrets.CYPRESS_BASE_URL }}" ]; then
-            echo "::error::CYPRESS_BASE_URL is not set in repository secrets"
-            exit 1
-          fi
-          if [ -z "${{ secrets.CYPRESS_USERNAME }}" ]; then
-            echo "::error::CYPRESS_USERNAME is not set in repository secrets"
-            exit 1
-          fi
-          if [ -z "${{ secrets.CYPRESS_PASSWORD }}" ]; then
-            echo "::error::CYPRESS_PASSWORD is not set in repository secrets"
-            exit 1
-          fi
         
       - name: Run Cypress tests
-        run: |
-          npx cypress run --spec "cypress/e2e/features/perm-status.feature" || true
-        env:
-          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
-          CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
-          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+        run: npx cypress run --spec "cypress/e2e/features/perm-status.feature"
         
       - name: Upload test results
-        uses: actions/upload-artifact@v4
         if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-results
           path: |
             cypress/videos
-            cypress/screenshots
-            cypress/results
-          retention-days: 7 
+            cypress/screenshots 
