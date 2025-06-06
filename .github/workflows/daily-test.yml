@@ -1,8 +1,8 @@
-name: Daily PERM Status Check
+name: Daily Perm Status Check
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # Runs at 9:00 AM Central Time (UTC-6)
+    - cron: '0 15,19,0 * * *'  # Runs at 9 AM CST, 1 PM CST, and 6 PM CST
   workflow_dispatch:  # Allows manual trigger
   push:
     branches:
@@ -18,27 +18,28 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           cache: 'npm'
           
       - name: Install dependencies
-        run: |
-          npm install
-          npm install @badeball/cypress-cucumber-preprocessor @bahmutov/cypress-esbuild-preprocessor
-          
+        run: npm ci
+        
       - name: Create Cypress directories
         run: |
           mkdir -p cypress/videos
           mkdir -p cypress/screenshots
         
       - name: Run Cypress tests
-        run: npx cypress run --spec "cypress/e2e/features/perm-status.feature"
+        run: npx cypress run
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
         
       - name: Upload test results
+        uses: actions/upload-artifact@v3
         if: always()
-        uses: actions/upload-artifact@v4
         with:
           name: cypress-results
-          path: |
-            cypress/videos
-            cypress/screenshots 
+          path: cypress/results
+          retention-days: 7 
