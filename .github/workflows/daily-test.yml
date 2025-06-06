@@ -12,7 +12,7 @@ on:
       - main  # Runs on every push to main branch
 
 jobs:
-  test:
+  current_perm_status:
     runs-on: ubuntu-latest
     
     steps:
