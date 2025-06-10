@@ -2,10 +2,10 @@ name: Daily PERM Status Check
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Runs at 6:00 AM Central Time (UTC-6)
-    - cron: '0 15 * * *'  # Runs at 9:00 AM Central Time (UTC-6)
-    - cron: '0 18 * * *'  # Runs at 12:00 PM Central Time (UTC-6)
-    - cron: '0 0 * * *'   # Runs at 6:00 PM Central Time (UTC-6)
+    - cron: '0 6 * * *'   # Runs at 6:00 AM CST
+    - cron: '0 10 * * *'  # Runs at 10:00 AM CST
+    - cron: '0 14 * * *'  # Runs at 2:00 PM CST
+    - cron: '0 18 * * *'  # Runs at 6:00 PM CST
   workflow_dispatch:  # Allows manual trigger
   push:
     branches:
