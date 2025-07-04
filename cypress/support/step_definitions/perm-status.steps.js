@@ -25,37 +25,3 @@ Then('I should see {string} as the Analyst Review date', (expectedDate) => {
       expect(actualDate).to.equal(expectedDate);
     });
 });
-
-Given('I am on the perm status check page', () => {
-  cy.log('Navigating to perm status check page...');
-  PermStatusPage.visitCaseStatusCheckPage();
-  cy.log('Successfully loaded perm status check page');
-});
-
-When('I enter a valid application number', () => {
-  cy.log('Entering valid application number...');
-  PermStatusPage.enterApplicationNumber('G-100-24179-153301');
-  cy.log('Application number entered successfully');
-});
-
-When('I click on the check box for reCAPTCHA', () => {
-  cy.log('Clicking check status button...');
-  PermStatusPage.clickCheckBox();
-  cy.log('Check status button clicked');
-});
-
-Then('I should see the current status of my application', () => {
-  cy.log('Verifying application status...');
-  PermStatusPage.getStatusResult()
-    .should('be.visible')
-    .and('contain', 'Status:');
-  cy.log('Application status verified successfully');
-});
-
-Then('I should see the last updated date', () => {
-  cy.log('Verifying last updated date...');
-  PermStatusPage.getLastUpdatedDate()
-    .should('be.visible')
-    .and('contain', 'Last Updated:');
-  cy.log('Last updated date verified successfully');
-}); 
