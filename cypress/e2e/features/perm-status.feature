@@ -6,4 +6,4 @@ Feature: PERM Processing Times Checker
  Scenario: Check PERM Analyst Review processing month and year
     Given I am on the perm processing times page
     When I check the Analyst Review month and year
-    Then I should see "Under Maintenance" as the Analyst Review date 
+    Then I should see "May 2024" as the Analyst Review date 
