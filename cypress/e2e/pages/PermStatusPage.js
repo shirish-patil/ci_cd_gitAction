@@ -5,7 +5,7 @@ class PermStatusPage {
   // Page actions
   visitProcessingTimesPage() {
     cy.log('Visiting PERM processing times page...');
-    cy.visit('https://flag.dol.gov/processingtimes', { failOnStatusCode: false });
+    cy.visit('https://flag.dol.gov/processingtimes');
     cy.log('Page loaded successfully');
   }
 

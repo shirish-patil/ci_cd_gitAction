@@ -25,21 +25,3 @@ Then('I should see {string} as the Analyst Review date', (expectedDate) => {
       expect(actualDate).to.equal(expectedDate);
     });
 });
-
-When('I check the page content', () => {
-  cy.log('Checking page content for maintenance status...');
-  cy.get('body').should('be.visible');
-  cy.log('Page content loaded successfully');
-});
-
-Then('I should see {string} message', (expectedMessage) => {
-  cy.log(`Looking for message: ${expectedMessage}`);
-  cy.contains(expectedMessage).should('be.visible');
-  cy.log(`Found message: ${expectedMessage}`);
-});
-
-Then('I should see {string} text', (expectedText) => {
-  cy.log(`Looking for text: ${expectedText}`);
-  cy.contains(expectedText).should('be.visible');
-  cy.log(`Found text: ${expectedText}`);
-});
