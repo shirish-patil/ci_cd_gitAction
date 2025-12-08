@@ -1,15 +1,16 @@
 name: Daily PERM Status Check
 
 on:
-  schedule:
-    - cron: '0 12 * * *'   # Runs at 6:00 AM CST (12:00 PM UTC)
-    - cron: '0 16 * * *'   # Runs at 10:00 AM CST (4:00 PM UTC)
-    - cron: '0 20 * * *'   # Runs at 2:00 PM CST (8:00 PM UTC)
-    - cron: '0 0 * * *'    # Runs at 6:00 PM CST (12:00 AM UTC next day)
-  workflow_dispatch:  # Allows manual trigger
-  push:
-    branches:
-      - main  # Runs on every push to main branch
+  # Daily schedule disabled - no longer needed for daily checks
+  # schedule:
+  #   - cron: '0 12 * * *'   # Runs at 6:00 AM CST (12:00 PM UTC)
+  #   - cron: '0 16 * * *'   # Runs at 10:00 AM CST (4:00 PM UTC)
+  #   - cron: '0 20 * * *'   # Runs at 2:00 PM CST (8:00 PM UTC)
+  #   - cron: '0 0 * * *'    # Runs at 6:00 PM CST (12:00 AM UTC next day)
+  workflow_dispatch:  # Allows manual trigger if needed
+  # push:
+  #   branches:
+  #     - main  # Disabled - no longer runs on push to main branch
 
 jobs:
   current_perm_status:
